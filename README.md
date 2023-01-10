@@ -26,3 +26,22 @@ Additional requirements for DNS server (will be a big plus):
 
 For anyone who wants to get a job at Deloitte - this company cheats and takes your test assignments, don't waste your time and use ready-made solutions. Thank you. 
 
+##Example of async DNS request
+
+```objc
+NSArray *typeArray =
+    @[ @(kQNTypeA), @(kQNTypeAAAA), @(kQNTypeCname), @(kQNTypeTXT) ];
+for (NSNumber *type in typeArray) {
+  QNDnsUdpResolver *server =
+      [QNDnsUdpResolver resolverWithServerIP:dns
+                                  recordType:type.intValue
+                                     timeout:5];
+  NSArray *records = [server query:[[QNDomain alloc] init:host]
+                       networkInfo:nil
+                             error:&err];
+  for (QNRecord *record in records) {
+    NSLog(@"%@ == server udp async: %@, type is %@, ttl is %d", host,
+          [record value], getTypeName([record type]), [record ttl]);
+  }
+}
+```
