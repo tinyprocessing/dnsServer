@@ -1,5 +1,7 @@
 DNS server for searching type A, AAAA, TXT, CName records on iOS and macOS platforms
 
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
+
 This code is a test case for Deloitte and meets the following requirements: 
 
 Asynchronous DNS server processes the incoming DNS-queries via UDP and performs name resolution asynchronously using MacOS asynchronous Network API.
